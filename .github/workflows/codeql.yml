@@ -1,0 +1,28 @@
+# GitHub CodeQL: kodda güvenlik açığı taraması (herkese açık depolarda ücretsiz).
+# Sonuçlar: GitHub > Security > Code scanning.
+name: Kod güvenlik taraması
+
+on:
+  pull_request:
+  schedule:
+    - cron: "23 3 * * 0"   # her pazar
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+
+jobs:
+  analiz:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        dil: [python, javascript-typescript, actions]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: github/codeql-action/init@v4
+        with:
+          languages: ${{ matrix.dil }}
+      - uses: github/codeql-action/analyze@v4

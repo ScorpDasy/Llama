@@ -1,0 +1,64 @@
+# ============================================================
+youtube_kanal_id: "UCWkGdUEcnUr2Af1qzFaa4Gw"   # https://www.youtube.com/channel/UCWkGdUEcnUr2Af1qzFaa4Gw
+# KANAL: ana — her kanal bu klasörde ayrı bir dosyadır.
+# Yeni kanal açmak için: GitHub > Actions > Otonom sistem > Run workflow > komut: yeni_kanal,
+# "aciklama" kutusuna kanalı bir cümleyle anlat. Sistem bu dosyanın benzerini kendisi yazar.
+# Elle de açabilirsin: bu dosyayı kopyalayıp adını değiştir (ör. tarih.yaml) ve içini düzenle.
+# ============================================================
+
+ad: "Beyin, Bilişim ve Seyahat"
+aktif: true                  # false = kanal durdurulur (verisi silinmez)
+kanal_id: ""                 # YouTube Studio > Ayarlar > Kanal > Gelişmiş: "UC..." ile başlar
+dil: "tr"                    # tr | en  (metinler, ses ve arama önerileri bu dile göre)
+bicim: "uzun_ve_shorts"      # uzun_ve_shorts | sadece_shorts | sadece_uzun
+# YouTube bağlantı anahtarının GitHub Secrets'taki adı. Bu kanal için: YT_REFRESH_TOKEN_ANA
+# ('ana' kanalı eski YT_REFRESH_TOKEN adını da kabul eder).
+
+# Bu kanala özel ayar farkları (config/ayarlar.yaml'ın üzerine uygulanır). Örnekler:
+ayarlar:
+  youtube:
+    haftalik_uzun_video: 3
+    video_basina_shorts: 2
+  ses:
+    ses_adi: "tr-TR-AhmetNeural"   # kadın ses: tr-TR-EmelNeural
+
+# Nişler: her nişin konuları kendi KAYNAKLARINDAN gelir. Kaynak türleri:
+#   youtube_oneri   : tohum kelimelerden YouTube arama önerileri (insanların gerçekten aradığı)
+#   google_trendler : Türkiye'nin günlük Google gündemi
+#   rss             : haber/blog akışlarının son başlıkları (adresler: [...])
+#   wikipedia_bugun : Vikipedi "tarihte bugün" olayları
+#   elle            : kendi konu listen (konular: [...])
+nisler:
+  - kod: "noro"
+    ad: "Nörobilim ve Beyin Sağlığı"
+    alan_adi: "trustneurohub.com.tr"
+    hedef_kitle: "Kendini geliştirmek isteyen 20-45 yaş arası meraklı yetişkinler"
+    tohum_kelimeler: ["beyin sağlığı", "odaklanma nasıl artırılır", "dopamin", "uyku ve hafıza",
+                      "nöropazarlama", "stres beyin"]
+    kaynaklar:
+      - tur: youtube_oneri
+    ortaklik_linkleri:       # "kısa_ad: hedef_url" — açıklamaya otomatik eklenir
+      # kitap-onerisi: "https://www.amazon.com.tr/...?tag=SIZIN-ETIKETINIZ"
+
+  - kod: "bilisim"
+    ad: "Bilişim, Otomasyon ve Yapay Zekâ"
+    alan_adi: "okyanusbilisimtr.com"
+    hedef_kitle: "Yapay zekâ ve otomasyonla işini kolaylaştırmak isteyen çalışanlar, öğrenciler, KOBİ'ler"
+    tohum_kelimeler: ["yapay zeka ile para kazanma", "python otomasyon", "ücretsiz yapay zeka araçları",
+                      "excel otomasyon", "bulut bilişim nedir"]
+    kaynaklar:
+      - tur: youtube_oneri
+      - tur: rss                  # teknoloji gündeminden güncel konular
+        adresler: ["https://webrazzi.com/feed/", "https://www.donanimhaber.com/rss/tum/"]
+    ortaklik_linkleri:
+      # python-kursu: "https://www.udemy.com/...?referralCode=..."
+
+  - kod: "turizm"
+    ad: "Turizm ve Seyahat"
+    alan_adi: ""                  # turizm alan adını buraya yaz (ör. "ornekturizm.com")
+    hedef_kitle: "Türkiye içinde bütçe dostu tatil arayan aileler ve gezginler"
+    tohum_kelimeler: ["ucuz tatil", "kapadokya gezi rehberi", "her şey dahil otel", "karadeniz turu"]
+    kaynaklar:
+      - tur: youtube_oneri
+    ortaklik_linkleri:
+      # otel-ara: "https://... (otel/tur ortaklık programı linkin)"

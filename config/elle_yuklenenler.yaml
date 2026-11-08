@@ -1,0 +1,7 @@
+# YouTube'a ELLE yüklediğin videoları buraya ekle; sistem onlardan da öğrensin.
+# (YouTube bağlantısı kurulunca bu dosyaya gerek kalmaz; sistem kendisi kaydeder.)
+#
+# DURUM.md > "Elle yüklenecekler" listesindeki kodu kopyala, karşısına video linkini yapıştır:
+#   2026h46-1-odaklanma-nasil-artirilir: "https://youtu.be/AbCdEfGhIjK"
+#   2026h46-1-odaklanma-nasil-artirilir#shorts0: "https://youtube.com/shorts/XyZ12345678"
+videolar:

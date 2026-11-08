@@ -1,0 +1,101 @@
+# Tek tıkla yetki — YouTube/Google anahtarlarını sistem kendisi alır; sen yalnızca "İzin ver"e basarsın.
+# 1) Her gün anahtarlar denenir; eksik/bozuk olan için GitHub'da "🔑 Onay gerekiyor" konusu açılır.
+# 2) O konuya "onay" yazarsın (ya da Actions > Yetki al > Run workflow) → sistem bir onay bağlantısı gönderir.
+# 3) Bağlantıda Google'da kanalını seçip "İzin ver"e basarsın → anahtar kaydedilir, kanal kurulur, konu kapanır.
+# Ayrıntı ve güvenlik: otonom/yetki.py
+name: Yetki al
+
+on:
+  schedule:
+    - cron: "43 5 * * *"   # her gün 08:43 (TR): anahtar denetimi (beklemez, yalnızca konu açar)
+  issue_comment:
+    types: [created]
+  workflow_dispatch:
+    inputs:
+      kanal:
+        description: "Kanal kodu (ör. ana). Google hesabı (arama motorları + API'ler) için: google"
+        type: string
+        default: ana
+      kanali_degistir:
+        description: "Bu kanala bağlı YouTube kanalını değiştir"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: yetki-${{ github.event.issue.number || github.event.inputs.kanal || 'denetim' }}
+  cancel-in-progress: false
+
+jobs:
+  yetki:
+    # Konu yorumunda yalnızca: sistemin açtığı yetki konusu + depo sahibi/üyesi + "onay" ile başlayan yorum.
+    if: >-
+      github.event_name != 'issue_comment' || (
+        github.event.issue.pull_request == null &&
+        github.event.issue.user.login == 'github-actions[bot]' &&
+        contains(github.event.issue.body, '<!-- yetki kanal=') &&
+        contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association) &&
+        startsWith(github.event.comment.body, 'onay'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: write      # youtube_kanali.json / yetki.json kaydı
+      issues: write        # onay konusu ve bağlantı yorumu
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements*.txt
+      - name: Paketleri kur
+        run: pip install -q -r requirements.txt
+      - name: Yetki
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Anahtarlar tek tek verilir (toJSON(secrets) GitHub'da 'kötü amaçlı olabilir' uyarısıyla durduruluyordu)
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          YT_REFRESH_TOKEN_ANA: ${{ secrets.YT_REFRESH_TOKEN_ANA }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_KV_NAMESPACE_ID: ${{ secrets.CF_KV_NAMESPACE_ID }}
+          GOOGLE_ARAMA_TOKEN: ${{ secrets.GOOGLE_ARAMA_TOKEN }}
+          GOOGLE_HESAP: ${{ secrets.GOOGLE_HESAP }}
+          GH_YONETICI_TOKEN: ${{ secrets.GH_YONETICI_TOKEN }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          JORMUNGAND_URL: ${{ secrets.JORMUNGAND_URL }}
+          JORMUNGAND_TOKEN: ${{ secrets.JORMUNGAND_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_KANAL: ${{ secrets.TELEGRAM_KANAL }}
+          BLUESKY_KULLANICI: ${{ secrets.BLUESKY_KULLANICI }}
+          BLUESKY_SIFRE: ${{ secrets.BLUESKY_SIFRE }}
+          SMTP_SUNUCU: ${{ secrets.SMTP_SUNUCU }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_KULLANICI: ${{ secrets.SMTP_KULLANICI }}
+          SMTP_SIFRE: ${{ secrets.SMTP_SIFRE }}
+          OLAY: ${{ github.event_name }}
+          KONU_NO: ${{ github.event.issue.number }}
+          KONU_GOVDE: ${{ github.event.issue.body }}
+          YORUM: ${{ github.event.comment.body }}
+          GIRILEN_KANAL: ${{ github.event.inputs.kanal }}
+          DEGISTIR: ${{ github.event.inputs.kanali_degistir }}
+        run: python -m otonom yetki
+      - name: Kaydet
+        if: always()
+        run: |
+          git config user.name "otonom-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add veri/yetki.json veri/kanallar 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -q -m "Yetki güncellemesi ($(date -u +%F))"
+            for i in 1 2 3 4 5 6; do git pull -q --rebase && git push -q && break; sleep $((i * 7)); done
+          fi
