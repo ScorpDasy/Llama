@@ -1,0 +1,13 @@
+# GitHub'ın ücretsiz Dependabot'u: kullanılan paketlerin ve iş akışı adımlarının yeni sürümlerini
+# haftalık kontrol eder, güncelleme için otomatik değişiklik isteği (PR) açar. Test iş akışı onları dener.
+version: 2
+updates:
+  - package-ecosystem: pip
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 3
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly

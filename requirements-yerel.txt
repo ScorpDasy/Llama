@@ -1,0 +1,3 @@
+# Ücretsiz yerel yapay zekâ modeli için (llama.cpp). İlk kurulumda derlenir (birkaç dakika),
+# GitHub Actions'ta önbelleğe alındığı için sonraki çalıştırmalarda hızlıdır.
+llama-cpp-python==0.3.36

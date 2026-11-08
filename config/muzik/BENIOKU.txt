@@ -1,0 +1,6 @@
+Arka plan müziği (isteğe bağlı)
+
+YouTube Studio > Ses Kitaplığı'ndan (Audio Library) "atıf gerekmez" işaretli
+telifsiz müzikleri indirip .mp3 olarak bu klasöre koyun. Sistem her video için
+birini seçer ve -20 dB seviyesinde (konuşmayı bastırmadan) ekler.
+Klasör boşsa video müziksiz üretilir.
