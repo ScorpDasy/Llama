@@ -1,0 +1,147 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# otonom — YouTube/alan adı sistemini TELEFONDAN yönet (Termux). Hibrit AI ile yan yana çalışır.
+# Kurulum:  bash kur.sh   (ya da: curl -fsSL <depo>/raw/<dal>/araclar/telefon/kur.sh | bash)
+# Komutlar: otonom yardim
+set -u
+DIZIN="$HOME/.otonom"; AYAR="$DIZIN/ayar"
+API="https://api.github.com"
+mkdir -p "$DIZIN"; chmod 700 "$DIZIN"
+[ -f "$AYAR" ] && . "$AYAR"
+DEPO="${DEPO:-}"; GH_TOKEN="${GH_TOKEN:-}"
+
+bilgi() { printf '\033[1;36m%s\033[0m\n' "$*"; }
+hata() { printf '\033[1;31m%s\033[0m\n' "$*" >&2; exit 1; }
+gerekli() { [ -n "$DEPO" ] && [ -n "$GH_TOKEN" ] || hata "Önce: otonom kur"; }
+gh_api() {  # gh_api YÖNTEM YOL [JSON]
+  curl -fsS -X "$1" "$API/repos/$DEPO$2" -H "Authorization: Bearer $GH_TOKEN" \
+    -H "Accept: application/vnd.github+json" ${3:+-d "$3"}
+}
+json() { python -c "import json,sys; d=json.load(sys.stdin); $1"; }
+ac() { command -v termux-open-url >/dev/null && termux-open-url "$1" || echo "$1"; }
+ana_dal() { gh_api GET "" | json 'print(d["default_branch"])'; }
+
+kur() {
+  bilgi "GitHub deposu (ör. Das-Hub-qi/das):"; read -r d; DEPO="${d:-Das-Hub-qi/das}"
+  bilgi "GitHub token (Fine-grained, yalnızca bu depo; izinler: Actions, Issues: Read and write; Contents: Read)."
+  bilgi "Oluşturmak için: github.com/settings/personal-access-tokens/new"
+  read -r -s -p "Token: " t; echo; GH_TOKEN="$t"
+  umask 077; printf 'DEPO=%q\nGH_TOKEN=%q\n' "$DEPO" "$GH_TOKEN" > "$AYAR"
+  gh_api GET "" >/dev/null && bilgi "✅ Bağlantı tamam: $DEPO" || hata "Depoya erişilemedi; token iznini kontrol et."
+}
+
+calistir() {  # calistir İŞ_AKIŞI '{"girdi":"değer"}'
+  gerekli
+  local dal; dal="$(ana_dal)"
+  gh_api POST "/actions/workflows/$1/dispatches" "{\"ref\":\"$dal\",\"inputs\":$2}" && bilgi "▶ Başlatıldı ($1). Birkaç dakika içinde: otonom durum"
+}
+
+onay() {  # onay [kanal|google] — bağlantıyı bekler ve tarayıcıda açar
+  gerekli
+  local kanal="${1:-ana}" bas url
+  bas="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+  calistir yetki.yml "{\"kanal\":\"$kanal\"}" || return 1
+  bilgi "⏳ Onay bağlantısı bekleniyor (en fazla 3 dk)..."
+  for _ in $(seq 1 36); do
+    sleep 5
+    url="$(gh_api GET "/issues/comments?since=$bas&per_page=50" 2>/dev/null | json '
+import re
+for c in reversed(d):
+    m = re.search(r"\((https://accounts\.google\.com/o/oauth2/[^)\s]+)\)", c.get("body") or "")
+    if m and c["user"]["login"] == "github-actions[bot]":
+        print(m.group(1)); break' 2>/dev/null)"
+    if [ -n "$url" ]; then
+      bilgi "👉 Google açılıyor: '$kanal' için kanalını seç ve İzin ver'e bas."
+      ac "$url"; return 0
+    fi
+  done
+  hata "Bağlantı gelmedi. GitHub'daki “Onay gerekiyor” konusuna bak: otonom bildirim"
+}
+
+durum() {
+  local dal; dal="$( [ -n "$GH_TOKEN" ] && ana_dal || echo main)"
+  curl -fsS "https://raw.githubusercontent.com/$DEPO/$dal/DURUM.md" \
+    | sed -e 's/\*\*//g' -e 's/^#\+ //' | head -n "${1:-70}"
+}
+
+bildirim() {  # açık "Onay gerekiyor" ve mühendis konularını bildirim olarak gösterir
+  gerekli
+  gh_api GET "/issues?state=open&per_page=50" | json '
+import re
+for i in d:
+    m = re.search(r"<!-- yetki kanal=([a-z0-9-]+) ", i.get("body") or "")
+    print((m.group(1) if m else "-") + "\t" + i["title"])' | while IFS=$'\t' read -r kanal baslik; do
+    echo "• $baslik"
+    if command -v termux-notification >/dev/null; then
+      if [ "$kanal" != "-" ]; then
+        termux-notification --id "otonom-$kanal" --title "Otonom: $baslik" --content "Dokun: onay bağlantısı açılır" \
+          --action "otonom onay $kanal" --button1 "Onay ver" --button1-action "otonom onay $kanal"
+      else
+        termux-notification --id "otonom-$(echo "$baslik" | cksum | cut -d' ' -f1)" --title "Otonom" --content "$baslik"
+      fi
+    fi
+  done
+}
+
+anahtar_aktar() {  # Hibrit AI anahtarlarını (NVIDIA, OpenRouter, Anthropic) bulut sistemine aktarır
+  gerekli
+  local dosya="${HIBRIT_DIZIN:-$HOME/hibrit}/anahtarlar.sh"
+  [ -f "$dosya" ] || hata "Hibrit anahtar dosyası yok: $dosya"
+  command -v gh >/dev/null || { bilgi "GitHub aracı kuruluyor (pkg install gh)..."; pkg install -y gh >/dev/null; }
+  ( . "$dosya"
+    for ad in NVIDIA_API_KEY OPENROUTER_API_KEY ANTHROPIC_API_KEY; do
+      deger="${!ad:-}"
+      [ -n "$deger" ] || continue
+      printf '%s' "$deger" | GH_TOKEN="$GH_TOKEN" gh secret set "$ad" -R "$DEPO" && echo "✅ $ad aktarıldı"
+    done )
+  bilgi "Bulut sistemi artık bu anahtarlarla da (ücretsiz kotalar) çalışır."
+}
+
+zamanla() {  # 3 saatte bir bildirim kontrolü (Termux:API gerekli)
+  command -v termux-job-scheduler >/dev/null || hata "Termux:API uygulaması ve 'pkg install termux-api' gerekli."
+  printf '#!/data/data/com.termux/files/usr/bin/bash\nexec %s bildirim >/dev/null 2>&1\n' "$(command -v otonom)" > "$DIZIN/kontrol.sh"
+  chmod 700 "$DIZIN/kontrol.sh"
+  termux-job-scheduler --job-id 7117 --period-ms 10800000 --persisted true --network any --script "$DIZIN/kontrol.sh" \
+    && bilgi "✅ Her 3 saatte bir kontrol edilecek; onay gerekince bildirim gelir."
+}
+
+yardim() { cat <<'Y'
+otonom — YouTube/alan adı sistemini telefondan yönet
+  otonom kur                      GitHub deposu ve token (bir kez)
+  otonom kurulum                  Eksik anahtarları toplayan sihirbaz (sayfaları açar, GitHub'a kendisi ekler)
+  otonom durum                    Panel özeti (DURUM.md)
+  otonom gunluk | haftalik | beta [kanal]   İş akışını şimdi çalıştır
+  otonom video [kanal]            Hemen yeni video üret (= haftalik)
+  otonom yeni-kanal "açıklama"    Yeni kanal aç (konu, kitle, dil, biçim)
+  otonom onay [kanal|google]      Tek tıkla yetki: Google bağlantısını telefonda açar
+  otonom bildirim                 Bekleyen onay/uyarıları bildirim olarak göster
+  otonom zamanla                  3 saatte bir otomatik bildirim kontrolü
+  otonom anahtar-aktar            Hibrit AI anahtarlarını (NVIDIA, OpenRouter, Anthropic) buluta aktar
+  otonom panel                    DURUM.md sayfasını tarayıcıda aç
+Y
+}
+
+kanal_kontrol() { [ -z "${1:-}" ] || [[ "$1" =~ ^[a-z0-9][a-z0-9-]{0,39}$ ]] || hata "Geçersiz kanal kodu: $1"; }
+
+komut="${1:-yardim}"; shift || true
+case "$komut" in yeni-kanal|yeni_kanal|durum) ;; *) kanal_kontrol "${1:-}" ;; esac
+case "$komut" in
+  kur) kur ;;
+  durum) durum "${1:-70}" ;;
+  gunluk|haftalik|beta|buyume|muhendis|analiz)
+    calistir otonom.yml "{\"komut\":\"$komut\",\"kanal\":\"${1:-}\"}" ;;
+  video) calistir otonom.yml "{\"komut\":\"haftalik\",\"kanal\":\"${1:-}\"}" ;;
+  yeni-kanal|yeni_kanal)
+    [ -n "${1:-}" ] || hata 'Kullanım: otonom yeni-kanal "Kanalı bir cümleyle anlat"'
+    aciklama="$(printf '%s' "$*" | python -c 'import json,sys; print(json.dumps(sys.stdin.read()))')"
+    calistir otonom.yml "{\"komut\":\"yeni_kanal\",\"aciklama\":$aciklama}" ;;
+  onay) onay "${1:-ana}" ;;
+  bildirim) bildirim ;;
+  zamanla) zamanla ;;
+  anahtar-aktar) anahtar_aktar ;;
+  kurulum)  # eksik anahtarları toplayan sihirbaz (Cloudflare, Google, Pexels) — GitHub'a kendisi ekler
+    command -v gh >/dev/null || pkg install -y gh >/dev/null
+    curl -fsSL "https://raw.githubusercontent.com/${DEPO:-Das-Hub-qi/das}/$( [ -n "$GH_TOKEN" ] && ana_dal || echo ccr-4374ffb0-5crvc3)/araclar/kurulum.py" -o "$DIZIN/kurulum.py" \
+      && python "$DIZIN/kurulum.py" ;;
+  panel) gerekli; ac "https://github.com/$DEPO/blob/$(ana_dal)/DURUM.md" ;;
+  *) yardim ;;
+esac

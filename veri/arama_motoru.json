@@ -1,0 +1,10 @@
+{
+  "trustneurohub.com.tr": {
+    "indexnow": "erişilemedi (ConnectionError)",
+    "google": "kurulmadı (GOOGLE_ARAMA_TOKEN yok)"
+  },
+  "okyanusbilisimtr.com": {
+    "indexnow": "site henüz yayında değil",
+    "google": "kurulmadı (GOOGLE_ARAMA_TOKEN yok)"
+  }
+}

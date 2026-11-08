@@ -1,0 +1,52 @@
+# GitHub Dependabot - Tam Otomatize ve Gelişmiş Yapılandırma
+version: 2
+updates:
+
+  # 1. PYTHON (PIP) BAĞIMLILIKLARI
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "03:00"
+      timezone: "Europe/Istanbul"
+    open-pull-requests-limit: 5
+    # PR karmaşasını önlemek için güncellemeleri akıllıca gruplar
+    groups:
+      python-dependencies:
+        patterns:
+          - "*"
+    labels:
+      - "dependencies"
+      - "python"
+      - "automated-pr"
+
+  # 2. GITHUB ACTIONS (İŞ AKIŞLARI VEYA CI/CD)
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly" # Aylıktan haftalığa çekildi (Güvenlik için önemli)
+      day: "monday"
+      time: "03:15"
+      timezone: "Europe/Istanbul"
+    open-pull-requests-limit: 5
+    groups:
+      actions-dependencies:
+        patterns:
+          - "*"
+    labels:
+      - "dependencies"
+      - "github-actions"
+      - "automated-pr"
+
+  # BONUS: Projenizde Docker varsa otomatik devreye girer
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "03:30"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "docker"
