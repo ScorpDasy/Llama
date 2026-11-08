@@ -1,0 +1,12 @@
+# Büyük üretim dosyaları (GitHub Actions 'artifacts' bölümünde 5 gün saklanır)
+cikti/
+site/
+beta/
+# Gizli bilgiler — ASLA depoya eklemeyin
+.env
+client_secret*.json
+token*.json
+__pycache__/
+*.pyc
+.pytest_cache/
+node_modules/

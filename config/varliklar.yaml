@@ -1,0 +1,39 @@
+# ============================================================
+# DİJİTAL VARLIKLAR — alan adları ve iletişim (kanallar: config/kanallar/)
+# Bu dosyayı kendi bilgilerinize göre düzenleyin.
+# ============================================================
+
+# Kanallar ve nişler artık config/kanallar/<kod>.yaml dosyalarında (her kanal ayrı dosya).
+# Bir nişin "alan_adi" alanı, o nişin videolarının yazılarının hangi sitede yayınlanacağını belirler.
+
+# Alan adı satış / kiralama bilgileri
+alan_adlari:
+  - ad: "trustneurohub.com.tr"
+    sektor: "Nörobilim, psikoloji, sağlık teknolojisi, nöropazarlama"
+    hedef_alici: "Psikoloji klinikleri, nöropazarlama ajansları, sağlık teknolojisi girişimleri"
+    mod: "site_ve_satis"     # site_ve_satis | sadece_satis | sadece_site | park
+    satis_fiyati_try: 0      # 0 = sistem önerir
+    kiralama_aylik_try: 0
+    aktif: true
+
+  - ad: "okyanusbilisimtr.com"
+    sektor: "Bilişim, yazılım, otomasyon, bulut, yapay zekâ"
+    hedef_alici: "Yazılım ajansları, bilişim danışmanlık firmaları, BT tedarikçileri"
+    mod: "site_ve_satis"
+    satis_fiyati_try: 0
+    kiralama_aylik_try: 0
+    aktif: true
+
+  # Turizm alan adlarınızı aşağıya ekleyin:
+  # - ad: "ornekturizm.com"
+  #   sektor: "Turizm, seyahat, otel, rezervasyon"
+  #   hedef_alici: "Tur operatörleri, oteller, seyahat acenteleri"
+  #   mod: "site_ve_satis"
+  #   satis_fiyati_try: 0
+  #   kiralama_aylik_try: 0
+  #   aktif: true
+
+iletisim:
+  eposta: ""                 # teklif e-postalarının yönlendirileceği adres (Cloudflare Email Routing)
+  kisa_link_alan_adi: "okyanusbilisimtr.com"   # ortaklık linkleri bu alan adından yönlenir: /git/<kisa_ad>
+  kontrol_merkezi: "https://claude.ai/artifact/JmGazg5W8YwsfdmMX7WeLf"  # tek sayfalık kontrol paneli (özel)

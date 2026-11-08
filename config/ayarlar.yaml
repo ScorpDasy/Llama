@@ -1,0 +1,137 @@
+# ============================================================
+# GENEL AYARLAR — Otonom Gelir ve İçerik Sistemi
+# Gizli bilgiler (API anahtarları, şifreler) BURAYA YAZILMAZ.
+# Onlar GitHub > Settings > Secrets bölümüne eklenir (README'ye bakın).
+# ============================================================
+
+saat_dilimi: "Europe/Istanbul"
+
+# --- Yapay zekâ (metin üretimi) -------------------------------------------
+# saglayici:
+#   "ucretsiz" = (VARSAYILAN) önce YEREL model (GitHub sunucusunda, tamamen ücretsiz), gerekirse ücretsiz
+#                kotalı servisler (Cloudflare, NVIDIA, OpenRouter, evdeki PC). Claude/paralı hizmet ASLA kullanılmaz.
+#   "yerel"    = yalnızca yerel model
+#   "otomatik" = Claude (ANTHROPIC_API_KEY varsa, ücretli) -> ücretsizler -> yerel
+#   "claude"   = önce Claude Haiku (ücretli)
+# Biri kullanılamazsa (kota/ağ) sıradakine kendiliğinden geçilir; iş asla durmaz.
+llm:
+  saglayici: "ucretsiz"
+  cloudflare_metin_modeli: "@cf/meta/llama-3.3-70b-instruct-fp8-fast"   # boş = Cloudflare metin kullanılmaz
+  # Ücretsiz kotalı ek sağlayıcılar (Hibrit AI ile aynı anahtarlar; anahtar yoksa atlanır):
+  nvidia_modeli: "meta/llama-3.3-70b-instruct"                # NVIDIA_API_KEY (build.nvidia.com)
+  openrouter_modeli: "meta-llama/llama-3.3-70b-instruct:free"  # OPENROUTER_API_KEY
+  # Evdeki PC (Jormungand): JORMUNGAND_URL (Cloudflare Tunnel adresi) + JORMUNGAND_TOKEN varsa kullanılır.
+  cloudflare_gorsel_modeli: "@cf/black-forest-labs/flux-1-schnell"     # boş = Cloudflare görsel kullanılmaz
+  # Yerel model: Google Gemma 4 (Mart 2026). Testlerde Türkçesi en akıcı ve en hızlı küçük model.
+  yerel_model: "unsloth/gemma-4-E2B-it-GGUF"
+  yerel_dosya: "gemma-4-E2B-it-Q4_K_M.gguf"
+  yerel_baglam: 10240        # model belleği (token); senaryo + talimat sığmalı
+  yerel_sicaklik: 0.7        # yaratıcılık (0 = tekdüze, 1 = çok serbest)
+  # Claude ayarları (yalnızca Claude kullanılırken):
+  # Toplu işlem (batch) açıkken fiyat %50 daha ucuzdur; sonuç birkaç saat içinde gelir.
+  model: "claude-haiku-5-5"
+  toplu_islem: true          # true = %50 ucuz, sonuç sonraki çalıştırmada alınır
+  senaryo_efor: "medium"     # low | medium | high  (yüksek = daha kaliteli, biraz daha pahalı)
+  kisa_is_efor: "low"        # plan, pitch gibi kısa işler
+
+# --- YouTube üretim hattı --------------------------------------------------
+youtube:
+  # Başlangıç modu: ilk 12 uzun videoda tek konuya odaklan (YouTube kanalın kitlesini çabuk öğrenir). 0 = kapalı
+  baslangic_odak_video: 12
+  haftalik_uzun_video: 3     # her hafta üretilecek uzun video sayısı
+  video_basina_shorts: 2     # her uzun videodan kesilecek Shorts sayısı (bedava ek içerik)
+  hedef_kelime: 1100         # ~7-8 dakika (8 dk üstü ara reklam imkânı verir)
+  kategori_id: "27"          # 27 = Eğitim, 28 = Bilim ve Teknoloji
+  # "private" = siz kontrol edip yayınlarsınız (önerilen, insan denetimi kuralı).
+  # "zamanla" = videolar aşağıdaki gün/saatlerde otomatik herkese açık olur.
+  gizlilik: "private"
+  yayin_gunleri: ["sali", "persembe", "cumartesi"]
+  yayin_saati: "18:00"
+  altyazi_yukle: true        # SRT altyazıyı YouTube'a yükler (izlenme süresini artırır)
+  sentetik_medya_beyani: false  # gerçekçi yapay görüntü/insan kullanırsanız true yapın
+
+# --- Kalite Denetçisi: her video yayından önce muayene edilir, kusur varsa onarılır ---
+denetim:
+  acik: true
+  gecme_puani: 80          # bunun altındaki videolar onarılır
+  en_fazla_onarim: 2       # video başına en fazla onarım denemesi
+  zayif_gorsel_esigi: 50   # görsellerin ortalama uygunluk puanı bunun altındaysa daha fazla aday üretilir
+
+# --- Hazırlık: video birleştirilmeden önce parçalar ayrı zamanlarda, acele etmeden hazırlanır ---
+# Her görsel yuvası için birkaç aday üretilir, yerel modelle (uygunluk + netlik) puanlanır, en iyisi seçilir.
+# Günde birkaç kez çalışır; hazır olan içerik montaja geçer, en fazla "en_fazla_saat" beklenir.
+hazirlik:
+  acik: true
+  aday_sayisi: 3        # yuva başına aday (fazlası = daha iyi seçim, daha uzun hazırlık)
+  dakika_siniri: 25     # bir çalıştırmada hazırlığa ayrılan en fazla süre
+  en_fazla_saat: 36     # bu süre dolunca eldeki en iyi adaylarla üretilir
+
+ses:
+  ses_adi: "tr-TR-AhmetNeural"   # alternatif: "tr-TR-EmelNeural"
+  hiz: "+5%"                     # ~155 kelime/dakika
+  muzik_seviyesi_db: -20         # arka plan müziği seviyesi (konuşma sırasında ayrıca kendiliğinden kısılır)
+  fon_muzigi: true               # config/muzik/ boşsa her videoya özel, telifsiz müzik ÜRETİLİR
+  ruh_hali: "merakli"            # müzik: sakin | merakli | enerjik | gizemli (niş ayarında ruh_hali ile değişir)
+  gecis_sesi: true               # sahne geçişlerinde "whoosh" sesi
+  efekt_seviyesi_db: -16
+  tonlama: true                  # kanca enerjik, sorular hafif yüksek, kapanış sakin; cümle ritmi değişken
+
+video:
+  genislik: 1920
+  yukseklik: 1080
+  fps: 24
+  ken_burns: true            # görsellerde yavaş yakınlaşma efekti (izleyiciyi tutar)
+  crf: 23                    # kalite (düşük = daha iyi, dosya büyür)
+  # İlk saniyeler izleyici kaybının en yüksek olduğu yer: boş intro yerine doğrudan kanca.
+  # İsterseniz 3 yapın (başlık kartı gösterilir).
+  intro_saniye: 0
+  outro_saniye: 5
+  gecis: true                # sahneler arası yumuşak/canlı geçişler (kayma, çözülme, daire...)
+  altyazi_yak: true          # söylenen cümle ekranda (sesi kapalı izleyenler için) + bölüm bandı
+  logo: "config/marka/logo.png"   # köşe filigranı + kapanışta logo (kanal ayarında "logo:" ile değişir)
+  ilerleme_cubugu: true      # altta ince ilerleme çubuğu (izleyici sonuna kadar kalır)
+  abone_rozeti: true         # videonun ~%30'unda kayan "ABONE OL" rozeti
+  paralaks: true             # 2.5D: fotoğraflar derinlik modeliyle (yerel, ücretsiz) üç boyutlu hareket eder
+  bilgi_grafikleri: true     # metinde sayı geçince ekranda canlı grafik (yüzde halkası, sayaç)
+  stok_video: true           # Shorts'ta PEXELS_API_KEY varsa her cümlede gerçek stok VİDEO (yoksa fotoğraf)
+
+# --- Ücretsiz sınırlar (sistem bunlara göre kendini ayarlar) ---------------
+butce:
+  github_dakika_limiti: 2000  # özel depoda aylık ücretsiz dakika; herkese açık depoda sınır yok (otomatik algılanır)
+
+# --- Laboratuvar (test & optimizasyon) -------------------------------------
+laboratuvar:
+  viral_esik: 10000          # bu görüntülenmeyi geçen video için devam videosu planlanır
+  min_veri_gunu: 7           # bir videoyu değerlendirmeden önce beklenen gün
+
+# --- Dinamik optimizasyon (Thompson örneklemesi) -----------------------------
+# Sistem her video için aşağıdaki seçeneklerden birini dener ve sonuçlara göre öğrenir.
+# Başta hepsini eşit dener; hangisi daha iyi giderse ona yoğunlaşır, ama keşfi asla tamamen bırakmaz.
+# Seçenek eklemek/çıkarmak serbesttir. Öğrenilenler DURUM.md'de "Laboratuvar öğrenimi" bölümünde.
+optimizasyon:
+  yari_omur_gun: 45          # eski videoların etkisi 45 günde yarıya iner (izleyici zevki değişebilir)
+  benzerlik_esigi: 0.6       # yayınlanmış bir konuya bu oranda benzeyen konu tekrar seçilmez
+  deneyler:
+    baslik_stili: ["soru", "sayili_liste", "nasil", "carpici_gercek"]
+    hedef_kelime: [800, 1100, 1400]          # video uzunluğu (~5, ~7, ~9 dk)
+    yayin_saati: ["12:00", "18:00", "20:30"] # yalnızca gizlilik "zamanla" iken denenir
+    gorsel_stili: ["sinematik", "belgesel", "canli_renkli"]   # yapay zekâ görsellerinin tarzı (izlenmeyle öğrenilir)
+    muzik: ["merakli", "enerjik", "sakin", "gizemli"]         # uzun videonun fon müziği ruh hali
+  kanallar_arasi_oduncleme: 0.15   # kanallar birbirinden öğrenir: diğer kanalların deneyiminden %15 ödünç
+
+# --- Öğrenme Mühendisi (sistemi her hafta kendi verisiyle geliştirir) ---------
+# Öğrendiği ayarları veri/ogrenilen_ayarlar.yaml'a yazar (bu dosyaya dokunmaz). Silerseniz sıfırlanır.
+muhendis:
+  otomatik_uygula: true      # false = yalnızca önerir, ayarları değiştirmez
+  ders_cikar: true           # en iyi/en kötü videolardan senaryo yazarına kural çıkarır
+  github_issue: true         # çözemediği sorunları ve yeni model adaylarını GitHub'da iş kaydı yapar
+  kilitli: []                # dokunmasını istemediğiniz ayarlar, ör. ["youtube.video_basina_shorts"]
+
+# --- Cloudflare (ücretsiz siteler, teklif formu, link takibi) --------------
+cloudflare:
+  web_analytics_token: ""    # Cloudflare > Web Analytics'ten alınan token (isteğe bağlı)
+  adsense_yayinci_id: ""     # AdSense onayından sonra: "pub-XXXXXXXXXXXXXXXX"
+
+# --- Teklifler -------------------------------------------------------------
+teklifler:
+  otomatik_yanit: false      # true = gelen teklife şablon e-postayı otomatik gönderir (SMTP gerekir)
