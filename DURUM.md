@@ -1,15 +1,15 @@
 # 📊 Sistem Durumu
 
-_Son çalıştırma: 2026-11-08 06:31 · komut: `gunluk` · ✅ Sorunsuz_
+_Son çalıştırma: 2026-11-08 21:29 · komut: `hazirlik` · ✅ Sorunsuz_
 
 ## ⚡ Hızlı erişim
 
 - 🧭 **Kontrol Merkezi** (tüm sistem tek sayfada): [aç](https://claude.ai/artifact/JmGazg5W8YwsfdmMX7WeLf)
-- ▶️ **Çalıştır** (beta / haftalık / günlük): [Actions > Otonom sistem > Run workflow](https://github.com/ScorpDasy/das/actions/workflows/otonom.yml)
-- 📥 **Bu çalıştırmanın videoları ve günlüğü**: [aç](https://github.com/ScorpDasy/das/actions/runs/42442873180) (en altta Artifacts)
-- 🔑 **Anahtarlar**: [Settings > Secrets](https://github.com/ScorpDasy/das/settings/secrets/actions)
-- ➕ **Yeni kanal aç**: [Run workflow](https://github.com/ScorpDasy/das/actions/workflows/otonom.yml) → komut `yeni_kanal` + açıklama · kanal dosyaları: [config/kanallar](config/kanallar)
-- 🛠️ **Mühendisin açtığı iş kayıtları**: [Issues](https://github.com/ScorpDasy/das/issues)
+- ▶️ **Çalıştır** (beta / haftalık / günlük): [Actions > Otonom sistem > Run workflow](https://github.com/ScorpDasy/Llama/actions/workflows/otonom.yml)
+- 📥 **Bu çalıştırmanın videoları ve günlüğü**: [aç](https://github.com/ScorpDasy/Llama/actions/runs/42509945908) (en altta Artifacts)
+- 🔑 **Anahtarlar**: [Settings > Secrets](https://github.com/ScorpDasy/Llama/settings/secrets/actions)
+- ➕ **Yeni kanal aç**: [Run workflow](https://github.com/ScorpDasy/Llama/actions/workflows/otonom.yml) → komut `yeni_kanal` + açıklama · kanal dosyaları: [config/kanallar](config/kanallar)
+- 🛠️ **Mühendisin açtığı iş kayıtları**: [Issues](https://github.com/ScorpDasy/Llama/issues)
 - ⚙️ **Ayarlar**: [ayarlar.yaml](config/ayarlar.yaml) · [varliklar.yaml](config/varliklar.yaml) (dosyayı açıp kalem simgesine dokunun)
 - 📈 **Raporlar**: [veri/raporlar](veri/raporlar) · 👷 [Mühendis günlüğü](veri/muhendis_gunlugu.md) · 🗓️ [İçerik takvimi](veri/icerik_takvimi.md)
 - 💰 **Teklifler**: [yanıt taslakları](veri/teklif_taslaklari) · 🏷️ [satış metinleri](veri/alan_adlari)
@@ -18,21 +18,21 @@ _Son çalıştırma: 2026-11-08 06:31 · komut: `gunluk` · ✅ Sorunsuz_
 - ☁️ **Cloudflare**: [dash.cloudflare.com](https://dash.cloudflare.com) · 📖 [Kurulum rehberi](README.md)
 
 ## Kurulum kontrol listesi
-2 madde tamamlanabilir — sistem bunlar olmadan da çalışır.
+6 madde tamamlanabilir — sistem bunlar olmadan da çalışır.
 
 | | Parça | Durum | Ne yapmalı? |
 |---|---|---|---|
 | ✅ | Yapay zekâ | Ücretsiz yerel model (gemma-4-E2B-it) | İsteğe bağlı: daha kaliteli metin için `ANTHROPIC_API_KEY` (README adım 1) |
 | ✅ | Seslendirme | Edge TTS (yedek: çevrimdışı Piper) | — |
 | ⚠️ | Görseller | Yalnızca anahtarsız Openverse + yazı kartı | Ücretsiz `PEXELS_API_KEY` ekleyin: görsel kalitesi artar (README adım 2) |
-| ✅ | YouTube uygulaması (tüm kanallar için ortak) | Hazır | — |
-| ✅ | YouTube istatistik / rekabet | Açık | — |
-| ✅ | Siteler + teklif formu (Cloudflare) | Yayında | — |
-| ✅ | Depo görünürlüğü | Özel | — |
+| ❌ | YouTube uygulaması (tüm kanallar için ortak) | Yok — videolar Actions > Artifacts'tan indirilebilir | `YT_CLIENT_ID`, `YT_CLIENT_SECRET` (README adım C); her kanalın anahtarı aşağıdaki tabloda |
+| ⚠️ | YouTube istatistik / rekabet | Kapalı (niş analizi yalnızca arama önerileriyle) | `YOUTUBE_API_KEY` (README adım C.2) |
+| ❌ | Siteler + teklif formu (Cloudflare) | Kurulmadı | `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` (README adım D) |
+| ⚠️ | Depo görünürlüğü | Herkese açık: GitHub dakikası sınırsız; teklif e-postaları depoya maskeli yazılır (tam hali Cloudflare KV'de) | İstersen Settings > General > Change visibility ile özel yap (dakika sınırı 2.000 olur) |
 | ⚠️ | Arka plan müziği | 0 parça | YouTube Ses Kitaplığı'ndan mp3 → `config/muzik/` |
 
 ## Ücretsiz sınırlar
-- GitHub dakikası (bu ay): **111** / 2000 · ay sonu tahmini 416 · mod: **normal**
+- GitHub dakikası (bu ay): **117** / sınırsız · mod: **normal**
 - YouTube API kotası (bugün, tüm kanallar): **0** / 10000
 - Yapay zekâ harcaması (toplam): **0.000 $**
 - Sınır dolarsa sistem durmaz: üretimi azaltır, yüklemeyi ertesi güne bırakır veya yedek servise geçer.
