@@ -1,0 +1,728 @@
+{
+  "noro": [
+    {
+      "konu": "odaklanma nasıl arttırılır",
+      "kaynak": "youtube_oneri",
+      "talep": 1.0,
+      "rekabet": "bilinmiyor",
+      "firsat": 1.0,
+      "trend": ""
+    },
+    {
+      "konu": "beyin sağlığı için ne yapmalıyız",
+      "kaynak": "youtube_oneri",
+      "talep": 0.864,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.864,
+      "trend": ""
+    },
+    {
+      "konu": "beyin sağlığı",
+      "kaynak": "youtube_oneri",
+      "talep": 0.797,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.797,
+      "trend": ""
+    },
+    {
+      "konu": "nöropazarlama nedir",
+      "kaynak": "youtube_oneri",
+      "talep": 0.797,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.797,
+      "trend": ""
+    },
+    {
+      "konu": "nöropazarlama teknikleri",
+      "kaynak": "youtube_oneri",
+      "talep": 0.627,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.627,
+      "trend": ""
+    },
+    {
+      "konu": "beyin sagligi icin beslenme",
+      "kaynak": "youtube_oneri",
+      "talep": 0.576,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.576,
+      "trend": ""
+    },
+    {
+      "konu": "stres ve sinirden kurtulma yolları",
+      "kaynak": "youtube_oneri",
+      "talep": 0.475,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.475,
+      "trend": ""
+    },
+    {
+      "konu": "odaklanma problemi nasıl çözülür",
+      "kaynak": "youtube_oneri",
+      "talep": 0.458,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.458,
+      "trend": ""
+    },
+    {
+      "konu": "dopamin arttırma",
+      "kaynak": "youtube_oneri",
+      "talep": 0.458,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.458,
+      "trend": ""
+    },
+    {
+      "konu": "odaklanma nasıl artar",
+      "kaynak": "youtube_oneri",
+      "talep": 0.441,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.441,
+      "trend": ""
+    },
+    {
+      "konu": "dopamin etkisi",
+      "kaynak": "youtube_oneri",
+      "talep": 0.339,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.339,
+      "trend": ""
+    },
+    {
+      "konu": "uyku ve yorgunluğu gidermek",
+      "kaynak": "youtube_oneri",
+      "talep": 0.339,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.339,
+      "trend": ""
+    },
+    {
+      "konu": "stres beyni nasıl etkiler",
+      "kaynak": "youtube_oneri",
+      "talep": 0.339,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.339,
+      "trend": ""
+    },
+    {
+      "konu": "beyin sağlığı için müzik",
+      "kaynak": "youtube_oneri",
+      "talep": 0.322,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.322,
+      "trend": ""
+    },
+    {
+      "konu": "uyku önemi",
+      "kaynak": "youtube_oneri",
+      "talep": 0.322,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.322,
+      "trend": ""
+    },
+    {
+      "konu": "stres nelere yol açar",
+      "kaynak": "youtube_oneri",
+      "talep": 0.305,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.305,
+      "trend": ""
+    },
+    {
+      "konu": "stres neden olur",
+      "kaynak": "youtube_oneri",
+      "talep": 0.305,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.305,
+      "trend": ""
+    },
+    {
+      "konu": "sağlıklı beyin için sağlığı nasıl koruruz",
+      "kaynak": "youtube_oneri",
+      "talep": 0.271,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.271,
+      "trend": ""
+    },
+    {
+      "konu": "dopamin azaltma",
+      "kaynak": "youtube_oneri",
+      "talep": 0.271,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.271,
+      "trend": ""
+    },
+    {
+      "konu": "beyin sağlığını korumak için neler yapmalıyız",
+      "kaynak": "youtube_oneri",
+      "talep": 0.237,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.237,
+      "trend": ""
+    },
+    {
+      "konu": "beyin sağlığı için tüketilmesi gereken besinler",
+      "kaynak": "youtube_oneri",
+      "talep": 0.22,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.22,
+      "trend": ""
+    },
+    {
+      "konu": "dopamin hormonu",
+      "kaynak": "youtube_oneri",
+      "talep": 0.203,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.203,
+      "trend": ""
+    },
+    {
+      "konu": "dopamin nedir",
+      "kaynak": "youtube_oneri",
+      "talep": 0.186,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.186,
+      "trend": ""
+    },
+    {
+      "konu": "odaklanma nasil artirilir",
+      "kaynak": "youtube_oneri",
+      "talep": 0.169,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.169,
+      "trend": ""
+    },
+    {
+      "konu": "dopamin",
+      "kaynak": "youtube_oneri",
+      "talep": 0.169,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.169,
+      "trend": ""
+    },
+    {
+      "konu": "dopamin nasıl arttırılır",
+      "kaynak": "youtube_oneri",
+      "talep": 0.169,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.169,
+      "trend": ""
+    },
+    {
+      "konu": "dopamin nedir nasıl artırılır",
+      "kaynak": "youtube_oneri",
+      "talep": 0.169,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.169,
+      "trend": ""
+    },
+    {
+      "konu": "uyku getirme videosu",
+      "kaynak": "youtube_oneri",
+      "talep": 0.169,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.169,
+      "trend": ""
+    },
+    {
+      "konu": "uyku getirme yöntemleri",
+      "kaynak": "youtube_oneri",
+      "talep": 0.169,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.169,
+      "trend": ""
+    },
+    {
+      "konu": "nöropazarlama",
+      "kaynak": "youtube_oneri",
+      "talep": 0.169,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.169,
+      "trend": ""
+    }
+  ],
+  "bilisim": [
+    {
+      "konu": "yapay zeka ile para kazanma",
+      "kaynak": "youtube_oneri",
+      "talep": 1.0,
+      "rekabet": "bilinmiyor",
+      "firsat": 1.0,
+      "trend": ""
+    },
+    {
+      "konu": "bulut bilişim nedir",
+      "kaynak": "youtube_oneri",
+      "talep": 1.0,
+      "rekabet": "bilinmiyor",
+      "firsat": 1.0,
+      "trend": ""
+    },
+    {
+      "konu": "python otomasyon",
+      "kaynak": "youtube_oneri",
+      "talep": 0.983,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.983,
+      "trend": ""
+    },
+    {
+      "konu": "ücretsiz yapay zeka sitesi",
+      "kaynak": "youtube_oneri",
+      "talep": 0.933,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.933,
+      "trend": ""
+    },
+    {
+      "konu": "python otomasyon örnekleri",
+      "kaynak": "youtube_oneri",
+      "talep": 0.917,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.917,
+      "trend": ""
+    },
+    {
+      "konu": "bulut bilişim",
+      "kaynak": "youtube_oneri",
+      "talep": 0.883,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.883,
+      "trend": ""
+    },
+    {
+      "konu": "ücretsiz yapay zeka siteleri",
+      "kaynak": "youtube_oneri",
+      "talep": 0.867,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.867,
+      "trend": ""
+    },
+    {
+      "konu": "bulut teknolojisi",
+      "kaynak": "youtube_oneri",
+      "talep": 0.633,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.633,
+      "trend": ""
+    },
+    {
+      "konu": "Apple, Türkiye’ye uzun vadeli yatırım yapacak",
+      "kaynak": "rss",
+      "talep": 0.6,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.6,
+      "trend": ""
+    },
+    {
+      "konu": "Nous Research'ün Batılı değerlerle yeniden eğittiği Çin merkezli Qwen modeli: Arete-27B",
+      "kaynak": "rss",
+      "talep": 0.6,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.6,
+      "trend": ""
+    },
+    {
+      "konu": "Apple, iPhone Duo için optimize edilen uygulama sayısının 100 bini aştığını açıkladı",
+      "kaynak": "rss",
+      "talep": 0.6,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.6,
+      "trend": ""
+    },
+    {
+      "konu": "Apple, Siri'yi yapay zeka ajanına dönüştürmek istiyor",
+      "kaynak": "rss",
+      "talep": 0.6,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.6,
+      "trend": ""
+    },
+    {
+      "konu": "DeepSeek'in yapay zeka ajanı Harness, 1,54 milyon günlük kullanıcıya ulaştı",
+      "kaynak": "rss",
+      "talep": 0.6,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.6,
+      "trend": ""
+    },
+    {
+      "konu": "FutureBright Ventures’tan yatırım alan Listnivo'nun değerlemesi 6 milyon dolara ulaştı",
+      "kaynak": "rss",
+      "talep": 0.6,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.6,
+      "trend": ""
+    },
+    {
+      "konu": "OpenAI'ın 1,25 trilyon dolar değerleme üzerinden 11 milyar dolar yatırım aldığı bildirildi",
+      "kaynak": "rss",
+      "talep": 0.6,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.6,
+      "trend": ""
+    },
+    {
+      "konu": "Nvidia yönetim kurulu, Jensen Huang'a yönelik olası casusluk girişimini soruşturacak",
+      "kaynak": "rss",
+      "talep": 0.6,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.6,
+      "trend": ""
+    },
+    {
+      "konu": "Dropbox, Tigris Data'yı 350 milyon dolara satın alıyor",
+      "kaynak": "rss",
+      "talep": 0.6,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.6,
+      "trend": ""
+    },
+    {
+      "konu": "Shield AI, radar üreticisi Echodyne'i 5,3 milyar dolara satın alıyor",
+      "kaynak": "rss",
+      "talep": 0.6,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.6,
+      "trend": ""
+    },
+    {
+      "konu": "DeepSeek’in AI ajan platformu günlük 1,54 milyon kullanıcıya ulaştı",
+      "kaynak": "rss",
+      "talep": 0.6,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.6,
+      "trend": ""
+    },
+    {
+      "konu": "Çinli araç alacaklara Mercedes CEO'sundan uyarı: Markaların %70'i Avrupa'dan silinebilir",
+      "kaynak": "rss",
+      "talep": 0.6,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.6,
+      "trend": ""
+    },
+    {
+      "konu": "Xiaomi duyurdu: Xiaomi 18 Pro ve Pro Max küresel pazara geliyor",
+      "kaynak": "rss",
+      "talep": 0.6,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.6,
+      "trend": ""
+    },
+    {
+      "konu": "Laptop toplamak mümkün mü? Casper ile kendi bilgisayarını özelleştir!",
+      "kaynak": "rss",
+      "talep": 0.6,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.6,
+      "trend": ""
+    },
+    {
+      "konu": "Apple'dan Türkiye'ye büyük yatırım: 7 yeni merkez açılacak",
+      "kaynak": "rss",
+      "talep": 0.6,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.6,
+      "trend": ""
+    },
+    {
+      "konu": "Anthropic, veri merkezleri için doğal gaz jeneratörü satın aldı",
+      "kaynak": "rss",
+      "talep": 0.6,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.6,
+      "trend": ""
+    },
+    {
+      "konu": "Artık yüksek Watt GPU'lu! ''MSI Cyborg 15 MAX incelemesi''",
+      "kaynak": "rss",
+      "talep": 0.6,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.6,
+      "trend": ""
+    },
+    {
+      "konu": "ABD'de seçim gecesine Türk yayıncı Hasan Piker (HasanAbi) damga vurdu",
+      "kaynak": "rss",
+      "talep": 0.6,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.6,
+      "trend": ""
+    },
+    {
+      "konu": "Sony, PlayStation Portal'ı yeniledi: Çevrimdışı oyun desteği gelebilir",
+      "kaynak": "rss",
+      "talep": 0.6,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.6,
+      "trend": ""
+    },
+    {
+      "konu": "iPhone Duo'daki çatlama sorunu tasarım hatası olmayabilir!",
+      "kaynak": "rss",
+      "talep": 0.6,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.6,
+      "trend": ""
+    },
+    {
+      "konu": "ücretsiz yapay zeka uygulaması",
+      "kaynak": "youtube_oneri",
+      "talep": 0.583,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.583,
+      "trend": ""
+    },
+    {
+      "konu": "ücretsiz yapay zeka programı",
+      "kaynak": "youtube_oneri",
+      "talep": 0.567,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.567,
+      "trend": ""
+    }
+  ],
+  "turizm": [
+    {
+      "konu": "her şey dahil otel",
+      "kaynak": "youtube_oneri",
+      "talep": 1.0,
+      "rekabet": "bilinmiyor",
+      "firsat": 1.0,
+      "trend": ""
+    },
+    {
+      "konu": "her şey dahil otel önerileri",
+      "kaynak": "youtube_oneri",
+      "talep": 0.85,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.85,
+      "trend": ""
+    },
+    {
+      "konu": "karadeniz turu nasıl yapılır",
+      "kaynak": "youtube_oneri",
+      "talep": 0.7,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.7,
+      "trend": ""
+    },
+    {
+      "konu": "kapadokya gezi rehberi",
+      "kaynak": "youtube_oneri",
+      "talep": 0.667,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.667,
+      "trend": ""
+    },
+    {
+      "konu": "karadeniz turu",
+      "kaynak": "youtube_oneri",
+      "talep": 0.617,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.617,
+      "trend": ""
+    },
+    {
+      "konu": "kapadokya gezi",
+      "kaynak": "youtube_oneri",
+      "talep": 0.567,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.567,
+      "trend": ""
+    },
+    {
+      "konu": "ucuz tatil nasıl yapılır",
+      "kaynak": "youtube_oneri",
+      "talep": 0.417,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.417,
+      "trend": ""
+    },
+    {
+      "konu": "kapadokya gezi turu",
+      "kaynak": "youtube_oneri",
+      "talep": 0.367,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.367,
+      "trend": ""
+    },
+    {
+      "konu": "ucuza tatil nasıl yapılır",
+      "kaynak": "youtube_oneri",
+      "talep": 0.3,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.3,
+      "trend": ""
+    },
+    {
+      "konu": "kapadokya gezi rotası",
+      "kaynak": "youtube_oneri",
+      "talep": 0.267,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.267,
+      "trend": ""
+    },
+    {
+      "konu": "ucuz tatil yapılacak ülkeler",
+      "kaynak": "youtube_oneri",
+      "talep": 0.25,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.25,
+      "trend": ""
+    },
+    {
+      "konu": "kapadokya gezisi",
+      "kaynak": "youtube_oneri",
+      "talep": 0.25,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.25,
+      "trend": ""
+    },
+    {
+      "konu": "ucuz tatil",
+      "kaynak": "youtube_oneri",
+      "talep": 0.167,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.167,
+      "trend": ""
+    },
+    {
+      "konu": "kapadokya nasıl gidilir",
+      "kaynak": "youtube_oneri",
+      "talep": 0.167,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.167,
+      "trend": ""
+    },
+    {
+      "konu": "kapadokya'da neler yapılır",
+      "kaynak": "youtube_oneri",
+      "talep": 0.167,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.167,
+      "trend": ""
+    },
+    {
+      "konu": "karadeniz turu kamp",
+      "kaynak": "youtube_oneri",
+      "talep": 0.167,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.167,
+      "trend": ""
+    },
+    {
+      "konu": "karadeniz travel",
+      "kaynak": "youtube_oneri",
+      "talep": 0.167,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.167,
+      "trend": ""
+    },
+    {
+      "konu": "en iyi karadeniz turu",
+      "kaynak": "youtube_oneri",
+      "talep": 0.167,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.167,
+      "trend": ""
+    },
+    {
+      "konu": "ucuz tatil yerleri",
+      "kaynak": "youtube_oneri",
+      "talep": 0.15,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.15,
+      "trend": ""
+    },
+    {
+      "konu": "antalyada ucuz tatil nasıl yapılır",
+      "kaynak": "youtube_oneri",
+      "talep": 0.15,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.15,
+      "trend": ""
+    },
+    {
+      "konu": "ucuza tatil yapılabilecek ülkeler",
+      "kaynak": "youtube_oneri",
+      "talep": 0.15,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.15,
+      "trend": ""
+    },
+    {
+      "konu": "kapadokya tur gezisi",
+      "kaynak": "youtube_oneri",
+      "talep": 0.15,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.15,
+      "trend": ""
+    },
+    {
+      "konu": "kapadokya nasıl oluştu",
+      "kaynak": "youtube_oneri",
+      "talep": 0.15,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.15,
+      "trend": ""
+    },
+    {
+      "konu": "her şey dahil otel vlog",
+      "kaynak": "youtube_oneri",
+      "talep": 0.15,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.15,
+      "trend": ""
+    },
+    {
+      "konu": "herşey dahil otel tavsiye",
+      "kaynak": "youtube_oneri",
+      "talep": 0.15,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.15,
+      "trend": ""
+    },
+    {
+      "konu": "karadeniz turu vlog",
+      "kaynak": "youtube_oneri",
+      "talep": 0.15,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.15,
+      "trend": ""
+    },
+    {
+      "konu": "ucuz tatil yerleri türkiye",
+      "kaynak": "youtube_oneri",
+      "talep": 0.133,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.133,
+      "trend": ""
+    },
+    {
+      "konu": "kapadokya gezi vlog",
+      "kaynak": "youtube_oneri",
+      "talep": 0.133,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.133,
+      "trend": ""
+    },
+    {
+      "konu": "kapadokya anlatım",
+      "kaynak": "youtube_oneri",
+      "talep": 0.133,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.133,
+      "trend": ""
+    },
+    {
+      "konu": "her şey dahil otel yemekleri",
+      "kaynak": "youtube_oneri",
+      "talep": 0.133,
+      "rekabet": "bilinmiyor",
+      "firsat": 0.133,
+      "trend": ""
+    }
+  ]
+}
