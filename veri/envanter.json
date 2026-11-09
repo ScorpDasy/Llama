@@ -1,0 +1,23 @@
+[
+  {
+    "varlik": "trustneurohub.com.tr",
+    "tur": "Alan adı",
+    "durum": "DNS var, HTTP 403, bitiş bilinmiyor (kayıt firmasından kontrol edin)",
+    "deger": "Yüksek (72/100)",
+    "potansiyel": "Mikro site (reklam+ortaklık) + satış/kiralama"
+  },
+  {
+    "varlik": "okyanusbilisimtr.com",
+    "tur": "Alan adı",
+    "durum": "DNS var, HTTP 200, bitiş 2027-09-13",
+    "deger": "Orta (62/100)",
+    "potansiyel": "Mikro site (reklam+ortaklık) + satış/kiralama"
+  },
+  {
+    "varlik": "Beyin, Bilişim ve Seyahat (ana)",
+    "tur": "YouTube kanalı",
+    "durum": "kanal_id veya YOUTUBE_API_KEY eksik",
+    "deger": "-",
+    "potansiyel": "Reklam (YPP), ortaklık linkleri, site trafiği"
+  }
+]
