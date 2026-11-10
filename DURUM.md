@@ -1,12 +1,12 @@
 # 📊 Sistem Durumu
 
-_Son çalıştırma: 2026-11-10 11:46 · komut: `hazirlik` · ✅ Sorunsuz_
+_Son çalıştırma: 2026-11-10 15:36 · komut: `gunluk` · ✅ Sorunsuz_
 
 ## ⚡ Hızlı erişim
 
 - 🧭 **Kontrol Merkezi** (tüm sistem tek sayfada): [aç](https://claude.ai/artifact/JmGazg5W8YwsfdmMX7WeLf)
 - ▶️ **Çalıştır** (beta / haftalık / günlük): [Actions > Otonom sistem > Run workflow](https://github.com/ScorpDasy/Llama/actions/workflows/otonom.yml)
-- 📥 **Bu çalıştırmanın videoları ve günlüğü**: [aç](https://github.com/ScorpDasy/Llama/actions/runs/42784094201) (en altta Artifacts)
+- 📥 **Bu çalıştırmanın videoları ve günlüğü**: [aç](https://github.com/ScorpDasy/Llama/actions/runs/42816432934) (en altta Artifacts)
 - 🔑 **Anahtarlar**: [Settings > Secrets](https://github.com/ScorpDasy/Llama/settings/secrets/actions)
 - ➕ **Yeni kanal aç**: [Run workflow](https://github.com/ScorpDasy/Llama/actions/workflows/otonom.yml) → komut `yeni_kanal` + açıklama · kanal dosyaları: [config/kanallar](config/kanallar)
 - 🛠️ **Mühendisin açtığı iş kayıtları**: [Issues](https://github.com/ScorpDasy/Llama/issues)
@@ -32,7 +32,7 @@ _Son çalıştırma: 2026-11-10 11:46 · komut: `hazirlik` · ✅ Sorunsuz_
 | ⚠️ | Arka plan müziği | 0 parça | YouTube Ses Kitaplığı'ndan mp3 → `config/muzik/` |
 
 ## Ücretsiz sınırlar
-- GitHub dakikası (bu ay): **162** / sınırsız · mod: **normal**
+- GitHub dakikası (bu ay): **168** / sınırsız · mod: **normal**
 - YouTube API kotası (bugün, tüm kanallar): **0** / 10000
 - Yapay zekâ harcaması (toplam): **0.000 $**
 - Sınır dolarsa sistem durmaz: üretimi azaltır, yüklemeyi ertesi güne bırakır veya yedek servise geçer.
